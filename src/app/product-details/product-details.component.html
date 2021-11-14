@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10 d-flex">
+          <div class="col-6">
+            <div class="product-img m-auto">
+              <img [src]="selectedProduct?.image" class="card-img-bottom" alt="..." >
+            </div>
+          </div>
+          <div class="col-4 offset2">
+            <h5 class="card-title">{{selectedProduct?.title}}</h5>
+            <h3>{{selectedProduct?.price | currency}}</h3>
+            <h4>{{selectedProduct?.category}}</h4>
+            <p class="card-text">{{selectedProduct?.description}}</p>
+            <button class="btn btn-primary text-capitalize" (click)="updateCart(selectedProduct)">add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

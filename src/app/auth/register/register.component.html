@@ -1,0 +1,139 @@
+<div class="container my-5">
+  <div class="row">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control w-50" id="name" placeholder="Enter Name"
+        name="name"
+        formControlName="name"
+        required
+        >
+      </div>
+      <div *ngIf="registerFormControl.name.touched && !registerFormControl.name.valid">
+        <small class="text-danger" *ngIf="registerFormControl.name.errors?.required">This Field is Required </small>
+      </div>
+      <div class="form-group">
+        <label for="emil">Email address</label>
+        <input type="email" class="form-control w-50" id="emil" aria-describedby="emil"
+        placeholder="Enter email"
+        name="emil"
+        formControlName="emil"
+        required
+        >
+      </div>
+      <div *ngIf="registerFormControl.emil.touched && !registerFormControl.emil.valid">
+        <small class="text-danger" *ngIf="registerFormControl.emil.errors?.required">This Field is Required </small>
+        <small class="text-danger" *ngIf="registerFormControl.emil.errors?.pattern">Email Address is Invalid </small>
+      </div>
+      <div class="form-group">
+        <label for="userName">UserName</label>
+        <input type="text" class="form-control w-50" id="userName" placeholder="Enter UserName"
+        required
+        name="userName"
+        formControlName="userName"
+        >
+      </div>
+      <div *ngIf="registerFormControl.userName.touched && !registerFormControl.userName.valid">
+        <small class="text-danger" *ngIf="registerFormControl.userName.errors?.required">
+          This Field is Required
+        </small>
+        <small class="text-danger" *ngIf="registerFormControl.userName.errors?.pattern">
+          Username can't contain Whitespace
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" class="form-control w-50" id="pass" placeholder="Enter Password"
+        required
+        name="pass"
+        formControlName="pass"
+        >
+      </div>
+      <div *ngIf="registerFormControl.pass.touched">
+        <small class="text-danger" *ngIf="registerFormControl.pass.errors?.required">
+          This Field is Required
+        </small>
+        <small class="text-danger" *ngIf="registerFormControl.pass.errors?.pattern">
+          Password should contain at least one uppercase,lowercase,digit ,special char and 8 length
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="pass">Confirm Password</label>
+        <input type="password" class="form-control w-50" id="confirmPass"
+        placeholder="Enter Confirm Password"
+        required
+        name="confirmPass"
+        formControlName="confirmPass"
+        >
+      </div>
+      <div *ngIf="registerFormControl.confirmPass.touched">
+        <small class="text-danger" *ngIf="registerFormControl.confirmPass.errors?.required">
+          This Field is Required
+        </small>
+        <small class="text-danger" *ngIf="registerFormControl.confirmPass.value && registerForm.errors?.mismatch">
+          Confirm Password doesn't match
+        </small>
+      </div>
+      <button class="btn btn-primary text-capitalize mt-3 me-3" (click)="addAddress($event)">add address</button>
+      <div formArrayName="addresses"  *ngFor="let addr of registerForm.get('addresses')['controls']; let i = index">
+        <div class="row g-3">
+          <div [formGroupName]="i">
+            <h3>Address {{i}}</h3>
+            <label for="address" class="form-label">Address</label>
+            <input type="text" formControlName="address" name ="address" class="form-control"
+             placeholder="Address" required>
+             <div  *ngIf="addr.get('address').touched">
+              <small class="text-danger" *ngIf="addr.get('address').errors?.required">
+                this field is required
+              </small>
+              <small class="text-danger" *ngIf="addr.get('address').errors?.pattern">
+                Must contain letters or numbers
+              </small>
+             </div>
+            <label for="street" class="form-label">Street</label>
+            <input type="text" formControlName="street" name="street" class="form-control"
+            placeholder="Street" required>
+            <div  *ngIf="addr.get('street').touched">
+              <small class="text-danger" *ngIf="addr.get('street').errors?.required">
+                this field is required
+              </small>
+              <small class="text-danger" *ngIf="addr.get('street').errors?.pattern">
+                Must contain letters or numbers
+              </small>
+             </div>
+            <label for="city" class="form-label">City</label>
+            <input type="text" formControlName="city" name="city" class="form-control"
+            placeholder="City" required>
+            <div  *ngIf="addr.get('city').touched">
+              <small class="text-danger" *ngIf="addr.get('city').errors?.required">
+                this field is required
+              </small>
+              <small class="text-danger" *ngIf="addr.get('city').errors?.pattern">
+                Must contain letters only
+              </small>
+             </div>
+            <label for="country" class="form-label">Country</label>
+            <input type="text" formControlName="country" name="country" class="form-control"
+            placeholder="Country" required>
+            <div  *ngIf="addr.get('country').touched">
+              <small class="text-danger" *ngIf="addr.get('country').errors?.required">
+                this field is required
+              </small>
+              <small class="text-danger" *ngIf="addr.get('country').errors?.pattern">
+                Must contain letters only
+              </small>
+             </div>
+          </div>
+          <div class="col-2 offset-10">
+            <button type="submit" class="btn btn-danger me-3" (click)="removeAddress(i)">Remove</button>
+            <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">Submit</button>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-5 d-block" [disabled]="!registerForm.valid">Register</button>
+    </form>
+    <h5 class="text-capitalize"> Already have account! <a routerLink="/auth/login">Login</a> </h5>
+  </div>
+</div>
+
+

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row my-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of shoppingCartItem; let i=index">
+        <tr>
+          <th scope="row">{{i+1}}</th>
+          <td class="cart-item-img"><img [src]="item.image"></td>
+          <td>{{item.title}}</td>
+          <td>{{item.total | currency}}</td>
+          <td>
+            <button class="btn btn-primary me-2" (click)="increaseQuantity(item)"><i class="fa fa-plus"></i></button>
+            {{item.quantity}}
+            <button class="btn btn-primary" (click)="decreesQuantity(item)"><i class="fa fa-minus"></i></button>
+          </td>
+          <td><button class="btn btn-danger" (click)="removeProduct(item)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <h3>Total: {{totalPrice | currency}}</h3> -->
+  </div>
+</div>

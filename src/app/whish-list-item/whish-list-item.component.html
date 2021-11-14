@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 my-5 d-flex justify-content-between">
+      <div class="col-3 offset-1">
+        <div class="product__img">
+          <img [src]="item.image" class="rounded float-start" alt="...">
+        </div>
+      </div>
+      <div class="col-4 d-flex justify-content-between">
+        <h4 class="ms-2">{{item.title}}</h4>
+        <a class="text-danger" (click)="RemoveItem(item)"><i class="fa fa-times fa-2x"></i></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- d-flex justify-content-between -->

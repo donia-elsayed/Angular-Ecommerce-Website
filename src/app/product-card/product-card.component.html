@@ -1,0 +1,15 @@
+<div class="card h-100 pt-3">
+  <div class="product-img m-auto">
+    <img [src]="product.image" class="card-img-top" alt="..." [routerLink]="['/product',product.id]">
+  </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">{{product.title}}</h5>
+    <h3>{{product.price | currency}}</h3>
+    <h4>{{product.category}}</h4>
+    <button class="btn btn-primary text-capitalize me-2" (click)="updateCart(product)">add to cart</button>
+    <button class="border-0 bg-transparent" (click)="addToWishList(product)">
+      <i class="fa fa-star fa-1x"></i>
+    </button>
+  </div>
+</div>
+

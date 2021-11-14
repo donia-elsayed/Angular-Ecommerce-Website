@@ -1,0 +1,13 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-5 offset-1">
+      <h4>WishList</h4>
+    </div>
+    <div class="col-6">
+      <h4>products:{{count}}</h4>
+    </div>
+  </div>
+  <div *ngFor="let item of wishItems">
+    <app-whish-list-item [item]="item"></app-whish-list-item>
+  </div>
+</div>
